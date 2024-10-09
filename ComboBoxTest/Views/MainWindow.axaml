@@ -17,13 +17,22 @@
     
     
     <StackPanel Orientation="Vertical">
-        <ComboBox ItemsSource="{Binding EnumValues}" SelectedItem="{Binding ModelProperty.EnumProperty}"/>
+        <ComboBox ItemsSource="{Binding EnumValues}" SelectedItem="{Binding ModelEnumProperty.EnumProperty}"/>
         
-        <ItemsControl ItemsSource="{Binding Models}">
+        <ItemsControl ItemsSource="{Binding EnumModels}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ComboBox ItemsSource="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).EnumValues}"
                               SelectedItem="{Binding EnumProperty}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <ItemsControl ItemsSource="{Binding StringModels}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ComboBox ItemsSource="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).StringValues}"
+                              SelectedItem="{Binding StringProperty}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

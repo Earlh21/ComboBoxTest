@@ -8,10 +8,13 @@ namespace ComboBoxTest.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    [ObservableProperty] private TestModel modelProperty;
+    [ObservableProperty] private TestModelEnum modelEnumProperty;
     
     public ObservableCollection<TestEnum> EnumValues { get; } = [];
-    public ObservableCollection<TestModel> Models { get; } = [];
+    public ObservableCollection<TestModelEnum> EnumModels { get; } = [];
+
+    public ObservableCollection<string> StringValues { get; } = ["a", "b", "c"];
+    public ObservableCollection<TestModelString> StringModels { get; } = [];
     
     public MainWindowViewModel()
     {
@@ -20,13 +23,14 @@ public partial class MainWindowViewModel : ViewModelBase
             EnumValues.Add(value);
         }
         
-        ModelProperty = new() { EnumProperty = TestEnum.EnumValue1 };
-        Models.Add(new() { EnumProperty = TestEnum.EnumValue1 });
+        ModelEnumProperty = new() { EnumProperty = TestEnum.EnumValue1 };
+        EnumModels.Add(new() { EnumProperty = TestEnum.EnumValue1 });
+        StringModels.Add(new() { StringProperty = StringValues[0] });
     }
 
     [RelayCommand]
     private void AddModel()
     {
-        Models.Add(new() { EnumProperty = TestEnum.EnumValue1 });
+        EnumModels.Add(new() { EnumProperty = TestEnum.EnumValue1 });
     }
 }
