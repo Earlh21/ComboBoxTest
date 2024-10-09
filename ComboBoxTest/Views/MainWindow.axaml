@@ -15,12 +15,19 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <ItemsControl ItemsSource="{Binding Models}">
-        <ItemsControl.ItemTemplate>
-            <DataTemplate>
-                <ComboBox ItemsSource="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).EnumValues}"
-                          SelectedItem="{Binding EnumProperty}"/>
-            </DataTemplate>
-        </ItemsControl.ItemTemplate>
-    </ItemsControl>
+    
+    <StackPanel Orientation="Vertical">
+        <ComboBox ItemsSource="{Binding EnumValues}" SelectedItem="{Binding ModelProperty.EnumProperty}"/>
+        
+        <ItemsControl ItemsSource="{Binding Models}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ComboBox ItemsSource="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).EnumValues}"
+                              SelectedItem="{Binding EnumProperty}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        
+        <Button Command="{Binding AddModelCommand}" Content="Add"/>
+    </StackPanel>
 </Window>
